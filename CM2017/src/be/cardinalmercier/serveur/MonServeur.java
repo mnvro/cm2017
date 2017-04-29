@@ -7,29 +7,32 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class MonServeur extends ServerSocket{
+public class MonServeur extends ServerSocket implements Runnable{
 	private Socket client;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 
 	public MonServeur() throws IOException, ClassNotFoundException {
 		super(2017);
-		client = this.accept();
-		oos = new ObjectOutputStream(client.getOutputStream());
-		ois = new ObjectInputStream(client.getInputStream());
-		oos.writeObject("Message");                           //TODO
-		System.out.println("on a reçu : "+ois.readObject());
+		// code était ici
+		new Thread(this).start();
 	}
-	public static void main(String[] args) {
+
+	@Override
+	public void run() {
 		try {
-			MonServeur ms = new MonServeur();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+			client = this.accept();
+			oos = new ObjectOutputStream(client.getOutputStream());
+			ois = new ObjectInputStream(client.getInputStream());
+			oos.writeObject("Message"); 	                          				//TODO
+			System.out.println("on a reçu : "+ois.readObject());
+		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
+	
 
 }
