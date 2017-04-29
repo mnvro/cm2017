@@ -1,9 +1,9 @@
 package semaine9.exercice3;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridBagLayout;
@@ -14,11 +14,11 @@ import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 
 public class Test extends JFrame implements ActionListener {
-
+	
 	private int nbLignes = 5;
 	private int nbColonnes = 6;
 	private JPanel contentPane;
-	private JButton[][] tabJButton = new JButton[nbColonnes][nbLignes];
+	private JButton[][] tabJButton;
 
 	/**
 	 * Launch the application.
@@ -42,6 +42,9 @@ public class Test extends JFrame implements ActionListener {
 	public Test() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		nbLignes = Integer.parseInt(JOptionPane.showInputDialog("Nb de lignes?"));		
+		nbColonnes = Integer.parseInt(JOptionPane.showInputDialog("Nb de colonnes?"));
+		tabJButton = new JButton[nbColonnes][nbLignes];
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -60,14 +63,12 @@ public class Test extends JFrame implements ActionListener {
 				gbc_btnNewButton.gridy = y;
 				contentPane.add(tabJButton[x][y], gbc_btnNewButton);
 			}
-		}
-		
+		}		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent evt) {
 		System.out.println("on a cliqué en "+evt.getActionCommand());
-		
 	}
 
 }
