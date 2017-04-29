@@ -6,12 +6,12 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class MonClient extends Socket {
+public class MonClient2 extends Socket {
 	private int num;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
 
-	public MonClient() throws UnknownHostException, IOException, NumberFormatException, ClassNotFoundException{
+	public MonClient2() throws UnknownHostException, IOException, NumberFormatException, ClassNotFoundException{
 		super("127.0.0.1",2017);
 		ois = new ObjectInputStream(this.getInputStream());
 		oos = new ObjectOutputStream(this.getOutputStream());
@@ -26,9 +26,9 @@ public class MonClient extends Socket {
 	}
 
 	public static void main(String[] args) {
-		MonClient monClient = null;
+		MonClient2 monClient = null;
 		try {
-			monClient = new MonClient();
+			monClient = new MonClient2();
 			
 
 			while (monClient.isBound());

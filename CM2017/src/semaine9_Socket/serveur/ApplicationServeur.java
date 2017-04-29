@@ -30,13 +30,16 @@ public class ApplicationServeur {
 	
 	
 	public ApplicationServeur(){
-
 		jFrameServeur = new JFrameServeur(this);
 	}
 	
 	public void traiteObjetRecu(Object o){
 		//System.out.println("Objet reçu : "+o);
 		this.jFrameServeur.traiteObjetRecu(o);
+	}
+	
+	public void envoieATousLesClients(Object o){
+		monServeurSocket.ecrireSurTousLesClients(o);
 	}
 
 	public static void main(String[] args) {

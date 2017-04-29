@@ -20,6 +20,7 @@ public class JPanelServeur extends JPanel implements ActionListener {
 	private JComboBox jComboBoxClients;
 	private JButton jButtonEnvoyer;
 	private JTextArea jTextAreaConsoleDuServeur;
+	private ApplicationServeur appliServeur;
 
 	public void traiteNouveauClient(SocketCoteServeur socketCoteServeur){
 		jComboBoxClients.addItem(socketCoteServeur);
@@ -34,7 +35,8 @@ public class JPanelServeur extends JPanel implements ActionListener {
 	/**
 	 * Create the panel.
 	 */
-	public JPanelServeur() {
+	public JPanelServeur(ApplicationServeur appliServeur) {
+		this.appliServeur = appliServeur;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -91,8 +93,13 @@ public class JPanelServeur extends JPanel implements ActionListener {
 
 	}
 	public void actionPerformed(ActionEvent arg0) {
+		try{
 		SocketCoteServeur scs = (SocketCoteServeur) jComboBoxClients.getSelectedItem();
 		scs.ecrire(jTextFieldMessageAEnvoyer.getText());
+		} catch (Exception e){
+			//TODO
+			appliServeur.envoieATousLesClients(jTextFieldMessageAEnvoyer.getText());
+		}
 		
 			
 		

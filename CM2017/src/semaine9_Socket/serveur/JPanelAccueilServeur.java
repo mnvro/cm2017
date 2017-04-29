@@ -22,10 +22,10 @@ public class JPanelAccueilServeur extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		try {
 			appliServeur.setMonServeurSocket(new MonServeurSocket(2017, appliServeur));
-			appliServeur.getjFrameServeur().setjPanelServeur(new JPanelServeur());
+			appliServeur.getjFrameServeur().setjPanelServeur(new JPanelServeur(appliServeur));
 			appliServeur.getjFrameServeur().setVisible(true);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
