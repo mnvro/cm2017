@@ -6,20 +6,23 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
-public class JFrameTest extends JFrame implements ActionListener {
+public class JFrameTest extends JFrame {
 
 	private JPanel contentPane;
-	private int nbLignes = 5;
-	private int nbColonnes = 3;
-	private JButton[][] tabJButton = new JButton[nbColonnes][nbLignes];
-	
+
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -37,32 +40,29 @@ public class JFrameTest extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public JFrameTest() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFrameTest.class.getResource("/images/StrategoIcon.jpg")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-//		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0};
-//		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-//		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-//		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-		for (int c = 0 ; c < nbColonnes ; c++){
-			for (int l = 0 ; l < nbLignes; l++){
-				tabJButton[c][l] = new JButton("("+c+","+l+")");
-				tabJButton[c][l].addActionListener(this);
-				GridBagConstraints gbc = new GridBagConstraints();
-				gbc.gridx = c;
-				gbc.gridy = l;
-				contentPane.add(tabJButton[c][l], gbc);
-			}
-		}	
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		System.out.println("on a cliqué en "+e.getActionCommand());	
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBorder(BorderFactory.createEmptyBorder());
+		btnNewButton.setSize(new Dimension(50, 50));
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
+		btnNewButton.setIcon(new ImageIcon(JFrameTest.class.getResource("/images/StrategoBackground/StrategoBackground_1.gif")));
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
+		gbc_btnNewButton.gridx = 4;
+		gbc_btnNewButton.gridy = 3;
+		contentPane.add(btnNewButton, gbc_btnNewButton);
 	}
 
 }
