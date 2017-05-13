@@ -63,7 +63,6 @@ public class JFrameStratego extends JFrame implements ActionListener {
 		for (int c = 0 ; c < nbColonnes ; c++){
 			for (int l = 0 ; l < nbLignes; l++){
 				tabJButton[c][l] = new MesJButton(c,l);
-				//String image = "/images/StrategoBackground/StrategoBackground_1.gif";
 				tabJButton[c][l].setIcon(
 				  new ImageIcon(
 					JFrameTest.class.getResource(

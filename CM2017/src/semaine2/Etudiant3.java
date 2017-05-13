@@ -7,9 +7,9 @@ public class Etudiant3 {
 	private String nom;
 	private String prenom;
 	private int num;
-	double resultats[] = new double [5];
-
-	void encode(){
+	private double resultats[] = new double [5];
+ 
+	public void encode(){
 	  for (int i=0 ; i<5 ; i++){
 	    do{
 		  resultats[i]= Double.parseDouble(
